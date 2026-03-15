@@ -1,0 +1,13 @@
+# Netlify build configuration for the Terramation Astro site.
+# This ensures Netlify runs in the correct subdirectory every time (no UI reconfiguration needed).
+
+[build]
+  base = "terramation-astro"
+  command = "npm run build"
+  publish = "dist"
+
+# Recommended: keep Netlify deployment clean and minimal.
+[build.environment]
+  # Ensure these are set in the Netlify UI or via `netlify env:set` (do not commit secrets into git!)
+  # BREVO_API_KEY = ""
+  # BREVO_LIST_ID = ""
