@@ -4,6 +4,10 @@
 # Node / JS
 node_modules/
 
+# Astro build artifacts
+terramation-astro/.astro/
+terramation-astro/dist/
+
 # Environment variables
 *.env
 
