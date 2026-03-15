@@ -1,0 +1,352 @@
+---
+/**
+ * NewsletterForm — Brevo subscription form with GDPR marketing opt-in.
+ *
+ * Props
+ * ─────
+ * variant:  "inline"  — compact single-row layout (for banners / sidebars)
+ *           "stacked" — full-width stacked layout (default, for dedicated sections)
+ * heading:  Override the default heading text.
+ * subtext:  Override the default sub-text.
+ * dark:     true = white text on dark background (use inside .section--dark)
+ */
+
+interface Props {
+  variant?: "inline" | "stacked";
+  heading?: string;
+  subtext?: string;
+  dark?: boolean;
+}
+
+const {
+  variant  = "stacked",
+  heading  = "Stay updated on the campaign",
+  subtext  = "Get the latest news on human composting legislation, terramation, and sustainable funerals in the UK. Unsubscribe any time.",
+  dark     = false,
+} = Astro.props;
+
+const formId = `newsletter-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<div class:list={["newsletter-form", `newsletter-form--${variant}`, dark && "newsletter-form--dark"]}>
+  {variant === "stacked" && (
+    <div class="newsletter-form__header">
+      <h3 class="newsletter-form__heading">{heading}</h3>
+      <p class="newsletter-form__subtext">{subtext}</p>
+    </div>
+  )}
+
+  <form
+    id={formId}
+    class="newsletter-form__form"
+    novalidate
+    data-newsletter-form
+  >
+    {variant === "inline" && (
+      <p class="newsletter-form__inline-label">{heading}</p>
+    )}
+
+    <div class:list={["newsletter-form__fields", variant === "inline" && "newsletter-form__fields--row"]}>
+      <!-- Name (optional — shown in stacked variant only) -->
+      {variant === "stacked" && (
+        <div class="newsletter-form__field">
+          <label for={`${formId}-name`} class="newsletter-form__label">
+            First name <span class="newsletter-form__optional">(optional)</span>
+          </label>
+          <input
+            type="text"
+            id={`${formId}-name`}
+            name="firstName"
+            autocomplete="given-name"
+            class="newsletter-form__input"
+            placeholder="Jane"
+          />
+        </div>
+      )}
+
+      <!-- Email -->
+      <div class:list={["newsletter-form__field", variant === "inline" && "newsletter-form__field--grow"]}>
+        <label for={`${formId}-email`} class="newsletter-form__label">
+          {variant === "stacked" ? "Email address" : ""}
+          <span class="visually-hidden">Email address (required)</span>
+        </label>
+        <input
+          type="email"
+          id={`${formId}-email`}
+          name="email"
+          autocomplete="email"
+          required
+          class="newsletter-form__input"
+          placeholder="your@email.com"
+          aria-required="true"
+        />
+      </div>
+
+      {variant === "inline" && (
+        <button type="submit" class="newsletter-form__submit btn btn--primary">
+          Subscribe
+        </button>
+      )}
+    </div>
+
+    <!-- GDPR marketing opt-in — required -->
+    <div class="newsletter-form__consent">
+      <label class="newsletter-form__checkbox-label">
+        <input
+          type="checkbox"
+          name="marketingOptIn"
+          value="on"
+          required
+          aria-required="true"
+          class="newsletter-form__checkbox"
+        />
+        <span class="newsletter-form__checkbox-text">
+          I agree to receive email updates from Terramation UK about human composting news
+          and the Close&nbsp;the&nbsp;Circle campaign. You can unsubscribe at any time.
+          See our <a href="/privacy-policy/" target="_blank" rel="noopener">privacy policy</a>.
+        </span>
+      </label>
+    </div>
+
+    {variant === "stacked" && (
+      <button type="submit" class="newsletter-form__submit btn btn--primary">
+        Sign me up
+      </button>
+    )}
+
+    <!-- Status messages -->
+    <div
+      role="alert"
+      aria-live="polite"
+      class="newsletter-form__status"
+      id={`${formId}-status`}
+      hidden
+    ></div>
+  </form>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>("[data-newsletter-form]").forEach((form) => {
+    const statusEl = document.getElementById(`${form.id}-status`) as HTMLElement | null;
+
+    function showStatus(message: string, isError: boolean) {
+      if (!statusEl) return;
+      statusEl.textContent = message;
+      statusEl.hidden = false;
+      statusEl.className = `newsletter-form__status ${isError ? "newsletter-form__status--error" : "newsletter-form__status--success"}`;
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const submitBtn = form.querySelector<HTMLButtonElement>("button[type='submit']");
+
+      // Client-side validation
+      const emailInput = form.querySelector<HTMLInputElement>('[type="email"]');
+      const checkboxInput = form.querySelector<HTMLInputElement>('[name="marketingOptIn"]');
+
+      if (!emailInput?.value || !emailInput.checkValidity()) {
+        showStatus("Please enter a valid email address.", true);
+        emailInput?.focus();
+        return;
+      }
+
+      if (!checkboxInput?.checked) {
+        showStatus("Please tick the consent box to subscribe.", true);
+        checkboxInput?.focus();
+        return;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending…";
+      }
+
+      if (statusEl) statusEl.hidden = true;
+
+      const formData = new FormData(form);
+
+      try {
+        const res = await fetch("/api/subscribe/", {
+          method: "POST",
+          body: formData,
+        });
+
+        const data = await res.json() as { success: boolean; message: string };
+
+        showStatus(data.message, !data.success);
+
+        if (data.success) {
+          form.reset();
+        }
+      } catch {
+        showStatus("Something went wrong. Please try again or email info@terramationuk.com.", true);
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = form.dataset.submitLabel ?? "Sign me up";
+        }
+      }
+    });
+  });
+</script>
+
+<style>
+  .newsletter-form {
+    width: 100%;
+  }
+
+  /* ── Dark variant ── */
+  .newsletter-form--dark .newsletter-form__heading,
+  .newsletter-form--dark .newsletter-form__subtext,
+  .newsletter-form--dark .newsletter-form__inline-label,
+  .newsletter-form--dark .newsletter-form__label,
+  .newsletter-form--dark .newsletter-form__checkbox-text {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .newsletter-form--dark .newsletter-form__checkbox-text a {
+    color: var(--color-sage-light);
+  }
+
+  /* ── Header ── */
+  .newsletter-form__header {
+    margin-block-end: var(--space-6);
+  }
+
+  .newsletter-form__heading {
+    font-size: var(--text-2xl);
+    color: var(--color-forest-dark);
+    margin-block-end: var(--space-3);
+  }
+
+  .newsletter-form__subtext {
+    font-size: var(--text-sm);
+    color: var(--color-text-mid);
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0;
+  }
+
+  /* ── Fields ── */
+  .newsletter-form__fields {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-block-end: var(--space-4);
+  }
+
+  .newsletter-form__fields--row {
+    flex-direction: row;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    margin-block-end: var(--space-4);
+  }
+
+  .newsletter-form__field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .newsletter-form__field--grow {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .newsletter-form__label {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text-mid);
+  }
+
+  .newsletter-form__optional {
+    font-weight: 400;
+    color: var(--color-text-light);
+    font-size: var(--text-xs);
+  }
+
+  .newsletter-form__input {
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    color: var(--color-text);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-3) var(--space-4);
+    width: 100%;
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+  }
+
+  .newsletter-form__input:focus {
+    outline: none;
+    border-color: var(--color-forest);
+    box-shadow: 0 0 0 3px rgba(45, 90, 39, 0.15);
+  }
+
+  /* ── Consent checkbox ── */
+  .newsletter-form__consent {
+    margin-block-end: var(--space-5);
+  }
+
+  .newsletter-form__checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    cursor: pointer;
+  }
+
+  .newsletter-form__checkbox {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    margin-block-start: 2px;
+    accent-color: var(--color-forest);
+    cursor: pointer;
+  }
+
+  .newsletter-form__checkbox-text {
+    font-size: var(--text-sm);
+    color: var(--color-text-mid);
+    line-height: 1.55;
+  }
+
+  .newsletter-form__checkbox-text a {
+    color: var(--color-forest);
+  }
+
+  /* ── Submit ── */
+  .newsletter-form__submit {
+    align-self: flex-start;
+  }
+
+  .newsletter-form__inline-label {
+    width: 100%;
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--color-text-mid);
+    margin-block-end: var(--space-2);
+  }
+
+  /* ── Status messages ── */
+  .newsletter-form__status {
+    margin-block-start: var(--space-4);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .newsletter-form__status--success {
+    background-color: rgba(45, 90, 39, 0.1);
+    color: var(--color-forest-dark);
+    border: 1px solid rgba(45, 90, 39, 0.25);
+  }
+
+  .newsletter-form__status--error {
+    background-color: rgba(180, 40, 40, 0.08);
+    color: #8b1a1a;
+    border: 1px solid rgba(180, 40, 40, 0.2);
+  }
+</style>

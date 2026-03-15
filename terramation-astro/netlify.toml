@@ -1,0 +1,103 @@
+[build]
+  command   = "npm run build"
+  publish   = "dist/client"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# ── Redirects ──────────────────────────────────────────────────────────────
+# Preserve WordPress URL patterns that Google has indexed.
+# All 301s (permanent) to protect SEO equity.
+
+# WordPress category / tag / author archive pages → blog listing
+[[redirects]]
+  from   = "/category/*"
+  to     = "/blog/"
+  status = 301
+
+[[redirects]]
+  from   = "/tag/*"
+  to     = "/blog/"
+  status = 301
+
+[[redirects]]
+  from   = "/author/*"
+  to     = "/blog/"
+  status = 301
+
+# WordPress paginated archive pages
+[[redirects]]
+  from   = "/page/*"
+  to     = "/blog/"
+  status = 301
+
+# WordPress feed
+[[redirects]]
+  from   = "/feed/"
+  to     = "/"
+  status = 301
+
+[[redirects]]
+  from   = "/feed"
+  to     = "/"
+  status = 301
+
+# WordPress comment feeds (crawl trap prevention)
+[[redirects]]
+  from   = "/*/feed/"
+  to     = "/"
+  status = 301
+
+# WordPress admin / login (security + prevent crawl waste)
+[[redirects]]
+  from   = "/wp-login.php"
+  to     = "/"
+  status = 301
+
+[[redirects]]
+  from   = "/wp-admin/*"
+  to     = "/"
+  status = 301
+
+# WordPress XML-RPC
+[[redirects]]
+  from   = "/xmlrpc.php"
+  to     = "/"
+  status = 301
+
+# Old 2023-old test page → correct URL
+[[redirects]]
+  from   = "/2023-old/03/21/what-is-terramation/"
+  to     = "/2023/03/21/what-is-terramation/"
+  status = 301
+
+# Non-trailing-slash versions of key pages → canonical with trailing slash
+[[redirects]]
+  from   = "/blog"
+  to     = "/blog/"
+  status = 301
+
+[[redirects]]
+  from   = "/contact"
+  to     = "/contact/"
+  status = 301
+
+# ── Security & SEO headers ─────────────────────────────────────────────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options           = "SAMEORIGIN"
+    X-Content-Type-Options    = "nosniff"
+    Referrer-Policy           = "strict-origin-when-cross-origin"
+    Permissions-Policy        = "camera=(), microphone=(), geolocation=()"
+
+# Long-cache static assets (images, fonts, JS, CSS)
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

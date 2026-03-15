@@ -1,0 +1,124 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import NewsletterForm from "../../components/NewsletterForm.astro";
+---
+
+<BaseLayout
+  title="Contact | Terramation UK"
+  description="Get in touch with Terramation UK — join the Close the Circle campaign, ask questions about human composting, or enquire about advertising."
+>
+
+  <!-- Page header -->
+  <div class="page-header">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb__sep" aria-hidden="true">/</span>
+        <span aria-current="page">Contact</span>
+      </nav>
+      <h1>Get in touch</h1>
+      <p class="page-header__sub">
+        Questions about terramation, the campaign, or advertising with us?
+        We'd love to hear from you.
+      </p>
+    </div>
+  </div>
+
+  <!-- Contact content -->
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- Info column -->
+        <div class="contact-info">
+          <div>
+            <h2 style="margin-block-end:var(--space-4);">Close the Circle campaign</h2>
+            <p>
+              We're working to make human composting a legal end-of-life choice in the UK.
+              Add your voice and help us push for change — every supporter makes a difference.
+            </p>
+          </div>
+
+          <div class="contact-info__item">
+            <span class="contact-info__icon" aria-hidden="true">✉️</span>
+            <div>
+              <span class="contact-info__label">Email us</span>
+              <a href="mailto:info@terramationuk.com" class="contact-info__value">
+                info@terramationuk.com
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-info__item">
+            <span class="contact-info__icon" aria-hidden="true">📢</span>
+            <div>
+              <span class="contact-info__label">Advertise with us</span>
+              <p class="contact-info__value" style="margin:0;">
+                Audiences are actively searching for sustainable funeral options.
+                Get in touch to reach them with your services.
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-info__item">
+            <span class="contact-info__icon" aria-hidden="true">🌿</span>
+            <div>
+              <span class="contact-info__label">Our mission</span>
+              <p class="contact-info__value" style="margin:0;">
+                Terramation UK educates the public on human composting and campaigns
+                for its legalisation in England and Wales.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form column -->
+        <div>
+          <h2 style="margin-block-end:var(--space-6);">Send us a message</h2>
+          <form
+            class="contact-form"
+            method="POST"
+            action="mailto:info@terramationuk.com"
+            enctype="text/plain"
+          >
+            <div class="form-field">
+              <label for="name">Your name</label>
+              <input type="text" id="name" name="name" autocomplete="name" required placeholder="Jane Smith" />
+            </div>
+
+            <div class="form-field">
+              <label for="email">Email address</label>
+              <input type="email" id="email" name="email" autocomplete="email" required placeholder="jane@example.com" />
+            </div>
+
+            <div class="form-field">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="subject" placeholder="Campaign / Enquiry / Advertising" />
+            </div>
+
+            <div class="form-field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required placeholder="Tell us how we can help…"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn--primary">Send message</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter sign-up -->
+  <section class="section section--dark">
+    <div class="container" style="max-width:640px;">
+      <NewsletterForm
+        variant="stacked"
+        heading="Join 100,000+ supporters"
+        subtext="Our petition has already gathered over 100,000 signatures. Sign up to stay informed and find out how to take action."
+        dark={true}
+      />
+    </div>
+  </section>
+
+</BaseLayout>
