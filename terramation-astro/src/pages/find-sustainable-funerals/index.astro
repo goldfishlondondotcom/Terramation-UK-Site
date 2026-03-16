@@ -1,0 +1,155 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const options = [
+  {
+    title: "Natural burials",
+    status: "Available in the UK",
+    summary:
+      "Biodegradable coffins or shrouds buried in protected natural landscapes with minimal environmental impact.",
+    estimatedCost: "Estimated cost: £800 to £4,000 depending on location and plot type.",
+    providers: [
+      {
+        name: "Woodland Burial Grounds",
+        href: "https://woodlandburialtrust.com",
+        note: "Natural burial option with woodland-focused memorial settings.",
+      },
+      {
+        name: "Natural Death Centre",
+        href: "https://naturaldeath.org.uk",
+        note: "UK-wide guidance and directory for natural burial grounds and funeral planning.",
+      },
+    ],
+  },
+  {
+    title: "Water cremation / resomation",
+    status: "Emerging in the UK",
+    summary:
+      "Also called alkaline hydrolysis, this lower-emission alternative uses water, heat, and alkali instead of flame.",
+    estimatedCost: "Estimated cost: around £1,500 to £2,500 including basic funeral services.",
+    providers: [
+      {
+        name: "Rowley Regis Crematorium",
+        href: "https://www.sandwell.gov.uk/info/200222/bereavement_services/778/rowley_regis_crematorium",
+        note: "Referenced in the original guide as an early UK location linked to greener cremation services.",
+      },
+      {
+        name: "Resomation Ltd",
+        href: "https://resomation.com",
+        note: "Technology provider behind water cremation systems.",
+      },
+    ],
+  },
+  {
+    title: "Human composting / terramation",
+    status: "Not yet available in the UK",
+    summary:
+      "Natural organic reduction transforms human remains into nutrient-rich soil over several weeks using organic materials and controlled decomposition.",
+    estimatedCost:
+      "Not yet priced in the UK. US pricing has typically ranged from about $3,000 to $5,000.",
+    providers: [],
+  },
+  {
+    title: "Promession",
+    status: "Not available in the UK",
+    summary:
+      "A developing freeze-drying approach designed to reduce remains into an organic powder for environmentally sensitive burial.",
+    estimatedCost: "No reliable UK pricing yet.",
+    providers: [
+      {
+        name: "Promessa Organic AB",
+        href: "https://promessa.se/en/",
+        note: "Swedish company developing the promession process.",
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Find Sustainable Funerals in the UK | Terramation UK"
+  description="Explore sustainable funeral options in the UK, including natural burials, water cremation, human composting, and other lower-impact end-of-life choices."
+>
+  <div class="page-header">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb__sep" aria-hidden="true">/</span>
+        <span aria-current="page">Find Sustainable Funerals</span>
+      </nav>
+      <h1>Find Sustainable Funerals</h1>
+      <p class="page-header__sub">
+        A practical guide to lower-impact funeral options and the providers or organisations currently associated with them.
+      </p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container container--narrow">
+      <article class="prose" style="max-width:none;">
+        <p>
+          This page restores the original provider-focused content from the legacy site in a cleaner, easier-to-scan format.
+          It is intended as a starting point for research rather than a formal endorsement of any provider.
+        </p>
+        <p>
+          Some sustainable funeral options are already available in the UK, while others remain in development or still
+          require legal reform. Where a method is not yet available in the UK, we have said so clearly.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section section--tinted">
+    <div class="container">
+      <div class="provider-directory">
+        {options.map((option) => (
+          <article class="provider-card">
+            <div class="provider-card__header">
+              <div>
+                <p class="provider-card__eyebrow">Sustainable option</p>
+                <h2>{option.title}</h2>
+              </div>
+              <span class="provider-card__status">{option.status}</span>
+            </div>
+
+            <p class="provider-card__summary">{option.summary}</p>
+            <p class="provider-card__cost">{option.estimatedCost}</p>
+
+            {option.providers.length > 0 ? (
+              <div class="provider-card__providers">
+                <h3>Providers and organisations</h3>
+                <ul class="provider-list">
+                  {option.providers.map((provider) => (
+                    <li class="provider-list__item">
+                      <a href={provider.href} target="_blank" rel="noopener noreferrer">{provider.name}</a>
+                      <p>{provider.note}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : (
+              <p class="provider-card__note">
+                There are currently no UK providers to list for this option. We will update this page as regulation and availability change.
+              </p>
+            )}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="campaign-banner">
+        <div class="campaign-banner__content">
+          <h2>Looking for human composting in the UK?</h2>
+          <p>
+            Terramation is not yet legally available here, but momentum is growing. Follow the campaign for updates on
+            legislation, providers, and sustainable funeral reform.
+          </p>
+        </div>
+        <a href="/contact/" class="btn btn--primary">Join the campaign</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

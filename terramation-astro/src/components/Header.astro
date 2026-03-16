@@ -4,6 +4,7 @@ const currentPath = Astro.url.pathname;
 const nav = [
   { label: "Home",               href: "/" },
   { label: "What is Terramation?", href: "/2023/03/21/what-is-terramation/" },
+  { label: "Find Sustainable Funerals", href: "/find-sustainable-funerals/" },
   { label: "Blog",               href: "/blog/" },
   { label: "Contact",            href: "/contact/" },
 ];
@@ -26,6 +27,7 @@ const nav = [
         aria-controls="main-nav"
         aria-expanded="false"
         aria-label="Toggle navigation"
+        data-nav-toggle
       >
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
           <line x1="3" y1="6"  x2="21" y2="6"  class="nav-icon-open" />
@@ -34,8 +36,8 @@ const nav = [
         </svg>
       </button>
 
-      <nav aria-label="Main navigation">
-        <ul class="site-nav" id="main-nav" role="list">
+      <nav aria-label="Main navigation" class="site-header__nav">
+        <ul class="site-nav" id="main-nav" role="list" data-site-nav>
           {nav.map(({ label, href }) => (
             <li class:list={[href === "/contact/" && "site-nav__cta"]}>
               <a
@@ -53,11 +55,34 @@ const nav = [
 </header>
 
 <script>
-  const toggle = document.querySelector('.nav-toggle') as HTMLButtonElement;
-  const nav    = document.getElementById('main-nav');
+  document.documentElement.classList.add("js");
 
-  toggle?.addEventListener('click', () => {
-    const open = nav?.classList.toggle('is-open');
-    toggle.setAttribute('aria-expanded', String(open));
+  const toggle = document.querySelector("[data-nav-toggle]") as HTMLButtonElement | null;
+  const nav = document.querySelector("[data-site-nav]") as HTMLUListElement | null;
+  const navLinks = nav?.querySelectorAll("a") ?? [];
+
+  function setOpen(open: boolean) {
+    if (!toggle || !nav) return;
+    nav.classList.toggle("is-open", open);
+    toggle.setAttribute("aria-expanded", String(open));
+  }
+
+  toggle?.addEventListener("click", () => {
+    const open = !nav?.classList.contains("is-open");
+    setOpen(open);
+  });
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      if (window.innerWidth <= 768) {
+        setOpen(false);
+      }
+    });
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) {
+      setOpen(false);
+    }
   });
 </script>
