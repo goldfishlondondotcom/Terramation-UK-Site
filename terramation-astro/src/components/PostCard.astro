@@ -13,6 +13,7 @@ interface Props {
   };
   headingTag?: "h2" | "h3";
   linkLabel?: string;
+  primaryCategory?: string;
 }
 
 const {
@@ -20,6 +21,7 @@ const {
   post,
   headingTag = "h2",
   linkLabel = "Read article",
+  primaryCategory = "Terramation UK",
 } = Astro.props;
 
 const HeadingTag = headingTag;
@@ -54,7 +56,7 @@ function formatDate(date: Date) {
   )}
 
   <div class="card__body">
-    <span class="card__eyebrow">Terramation UK</span>
+    <span class="card__eyebrow">{primaryCategory}</span>
     <HeadingTag class="card__title">{post.data.title}</HeadingTag>
     <p class="card__excerpt">{post.data.description}</p>
     <p class="card__meta">{formatDate(post.data.pubDate)}</p>

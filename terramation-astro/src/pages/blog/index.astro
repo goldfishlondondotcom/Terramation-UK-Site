@@ -8,6 +8,17 @@ const posts = allPosts.sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
+const filterCategories = ["All", "UK News", "Human Composting", "Uncategorised"];
+
+function normalizeCategory(category: string) {
+  return category === "Uncategorized" ? "Uncategorised" : category;
+}
+
+function postCategories(post: (typeof posts)[number]) {
+  const categories = post.data.categories?.map(normalizeCategory) ?? [];
+  return categories.length > 0 ? categories : ["Uncategorised"];
+}
+
 function postUrl(post: (typeof posts)[number]) {
   const d = post.data.pubDate;
   const y = d.getFullYear();
@@ -45,13 +56,95 @@ function postUrl(post: (typeof posts)[number]) {
       {posts.length === 0 ? (
         <p>No posts yet. Check back soon.</p>
       ) : (
-        <div class="grid-3">
-          {posts.map((post) => (
-            <PostCard href={postUrl(post)} post={post} headingTag="h2" />
-          ))}
-        </div>
+        <>
+          <div class="blog-filters" aria-label="Filter blog posts by category">
+            {filterCategories.map((category, index) => (
+              <button
+                type="button"
+                class:list={["blog-filters__button", index === 0 && "is-active"]}
+                data-category-filter={category}
+                aria-pressed={index === 0 ? "true" : "false"}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+
+          <p class="blog-filters__summary" data-filter-summary>
+            Showing all {posts.length} posts
+          </p>
+
+          <div class="grid-3" data-filter-grid>
+            {posts.map((post) => (
+              <div
+                data-post-card
+                data-categories={postCategories(post).join("|")}
+              >
+                <PostCard
+                  href={postUrl(post)}
+                  post={post}
+                  headingTag="h2"
+                  primaryCategory={postCategories(post)[0]}
+                />
+              </div>
+            ))}
+          </div>
+
+          <p class="blog-filters__empty" data-filter-empty hidden>
+            No posts match that category yet.
+          </p>
+        </>
       )}
     </div>
   </section>
 
 </BaseLayout>
+
+<script>
+  const buttons = Array.from(document.querySelectorAll("[data-category-filter]"));
+  const cards = Array.from(document.querySelectorAll("[data-post-card]"));
+  const summary = document.querySelector("[data-filter-summary]");
+  const emptyState = document.querySelector("[data-filter-empty]");
+
+  function updateSummary(category, visibleCount) {
+    if (!summary) return;
+
+    if (category === "All") {
+      summary.textContent = `Showing all ${visibleCount} posts`;
+      return;
+    }
+
+    summary.textContent = `Showing ${visibleCount} ${category} post${visibleCount === 1 ? "" : "s"}`;
+  }
+
+  function applyFilter(category) {
+    let visibleCount = 0;
+
+    cards.forEach((card) => {
+      const categories = card.getAttribute("data-categories")?.split("|") ?? [];
+      const show = category === "All" || categories.includes(category);
+      card.hidden = !show;
+      if (show) {
+        visibleCount += 1;
+      }
+    });
+
+    buttons.forEach((button) => {
+      const isActive = button.getAttribute("data-category-filter") === category;
+      button.classList.toggle("is-active", isActive);
+      button.setAttribute("aria-pressed", String(isActive));
+    });
+
+    if (emptyState) {
+      emptyState.hidden = visibleCount > 0;
+    }
+
+    updateSummary(category, visibleCount);
+  }
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      applyFilter(button.getAttribute("data-category-filter") ?? "All");
+    });
+  });
+</script>
