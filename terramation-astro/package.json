@@ -10,6 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "new:post": "node scripts/new-blog-post.mjs",
     "import:wordpress": "node scripts/wordpress-to-markdown.mjs"
   },
   "dependencies": {

@@ -1,5 +1,19 @@
 # Blog Post Template
 
+Fastest option:
+
+```bash
+npm run new:post -- your-post-slug
+```
+
+Example:
+
+```bash
+npm run new:post -- human-composting-update-march-2026
+```
+
+That command creates a new draft file for you automatically in `src/content/blog/`.
+
 Copy this file into `src/content/blog/` and rename it to the URL slug you want.
 
 Example filename:

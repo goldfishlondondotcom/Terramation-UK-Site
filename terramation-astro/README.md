@@ -6,6 +6,12 @@ Astro/Netlify replacement for the Terramation UK WordPress site.
 
 Use the template at [docs/blog-post-template.md](/Users/joekenyon/Terramation-UK-Site/terramation-astro/docs/blog-post-template.md) when adding a new article.
 
+Fastest way to create a new draft:
+
+```bash
+npm run new:post -- your-post-slug
+```
+
 Add real posts to:
 
 - [src/content/blog/](/Users/joekenyon/Terramation-UK-Site/terramation-astro/src/content/blog)
