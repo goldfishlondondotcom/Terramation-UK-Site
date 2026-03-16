@@ -88,14 +88,29 @@ const options = [
     <div class="container container--narrow">
       <article class="prose" style="max-width:none;">
         <p>
-          This page restores the original provider-focused content from the legacy site in a cleaner, easier-to-scan format.
-          It is intended as a starting point for research rather than a formal endorsement of any provider.
-        </p>
-        <p>
           Some sustainable funeral options are already available in the UK, while others remain in development or still
           require legal reform. Where a method is not yet available in the UK, we have said so clearly.
         </p>
       </article>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="advertising-banner">
+        <div class="advertising-banner__content">
+          <p class="advertising-banner__eyebrow">For providers</p>
+          <h2>Reach visitors already looking for sustainable funeral options</h2>
+          <p>
+            This page attracts high-intent readers researching greener end-of-life choices in the UK. Featured listings,
+            category sponsorships, and premium placement are available for relevant providers.
+          </p>
+        </div>
+        <div class="advertising-banner__actions">
+          <a href="/contact/" class="btn btn--primary">Advertise on this page</a>
+          <a href="/blog/" class="btn btn--outline advertising-banner__secondary">See our audience focus</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -121,16 +136,31 @@ const options = [
                 <ul class="provider-list">
                   {option.providers.map((provider) => (
                     <li class="provider-list__item">
-                      <a href={provider.href} target="_blank" rel="noopener noreferrer">{provider.name}</a>
+                      <div class="provider-list__topline">
+                        <a href={provider.href} target="_blank" rel="noopener noreferrer" class="provider-list__title">
+                          {provider.name}
+                        </a>
+                        <a
+                          href={provider.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="btn btn--primary provider-list__button"
+                        >
+                          Visit website
+                        </a>
+                      </div>
                       <p>{provider.note}</p>
                     </li>
                   ))}
                 </ul>
               </div>
             ) : (
-              <p class="provider-card__note">
-                There are currently no UK providers to list for this option. We will update this page as regulation and availability change.
-              </p>
+              <div class="provider-card__empty">
+                <p class="provider-card__note">
+                  There are currently no UK providers to list for this option. We will update this page as regulation and availability change.
+                </p>
+                <a href="/contact/" class="btn btn--earth">Advertise future availability</a>
+              </div>
             )}
           </article>
         ))}
@@ -149,6 +179,19 @@ const options = [
           </p>
         </div>
         <a href="/contact/" class="btn btn--primary">Join the campaign</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container container--narrow">
+      <div class="directory-cta">
+        <h2>Want your brand featured here?</h2>
+        <p>
+          We can offer featured directory placement, category sponsorship, and exposure to readers actively comparing
+          sustainable funeral choices in the UK.
+        </p>
+        <a href="/contact/" class="btn btn--earth">Enquire about advertising</a>
       </div>
     </div>
   </section>
