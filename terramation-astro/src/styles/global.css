@@ -182,6 +182,7 @@ blockquote {
   text-decoration: none;
   flex-shrink: 0;
   color: inherit;
+  min-width: 0;
 }
 
 .site-header__logo-mark {
@@ -253,10 +254,17 @@ blockquote {
 }
 
 @media (max-width: 768px) {
+  .site-header__inner {
+    gap: var(--space-3);
+    align-items: flex-start;
+  }
+
   .js .nav-toggle {
     display: block;
     position: relative;
     z-index: 121;
+    margin-left: auto;
+    margin-top: var(--space-1);
   }
 
   .site-nav {
@@ -291,11 +299,40 @@ blockquote {
     width: 100%;
   }
 
+  .site-header__logo {
+    max-width: min(240px, calc(100vw - 110px));
+  }
+
+  .site-header__logo-mark {
+    gap: 0.05rem;
+  }
+
+  .site-header__logo img {
+    height: 24px;
+  }
+
   .site-header__logo-tag {
-    font-size: 0.53rem;
-    letter-spacing: 0.1em;
+    font-size: 0.48rem;
+    line-height: 1.15;
+    letter-spacing: 0.09em;
     white-space: normal;
-    max-width: 180px;
+    max-width: 160px;
+  }
+}
+
+@media (max-width: 420px) {
+  .site-header__logo {
+    max-width: calc(100vw - 96px);
+  }
+
+  .site-header__logo img {
+    height: 22px;
+  }
+
+  .site-header__logo-tag {
+    font-size: 0.44rem;
+    letter-spacing: 0.07em;
+    max-width: 145px;
   }
 }
 
