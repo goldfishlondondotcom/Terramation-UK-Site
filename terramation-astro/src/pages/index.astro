@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import NewsletterForm from "../components/NewsletterForm.astro";
+import PostCard from "../components/PostCard.astro";
 import { getCollection } from "astro:content";
 
 const allPosts = await getCollection("blog");
@@ -16,9 +17,6 @@ function postUrl(post: (typeof allPosts)[number]) {
   return `/${y}/${m}/${day}/${post.id}/`;
 }
 
-function formatDate(date: Date) {
-  return date.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
-}
 ---
 
 <BaseLayout
@@ -187,18 +185,7 @@ function formatDate(date: Date) {
 
         <div class="grid-3" style="margin-block-start:var(--space-10);">
           {recentPosts.map((post) => (
-            <a href={postUrl(post)} class="card">
-              <div class="card__image--placeholder card__image">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
-              </div>
-              <div class="card__body">
-                <span class="card__eyebrow">Terramation UK</span>
-                <h3 class="card__title">{post.data.title}</h3>
-                <p class="card__excerpt">{post.data.description}</p>
-                <p class="card__meta">{formatDate(post.data.pubDate)}</p>
-                <span class="card__link">Read more →</span>
-              </div>
-            </a>
+            <PostCard href={postUrl(post)} post={post} headingTag="h3" linkLabel="Read more" />
           ))}
         </div>
       </div>

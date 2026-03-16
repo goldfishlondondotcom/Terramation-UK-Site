@@ -1,6 +1,7 @@
 ---
 title: "The Circular Economy of Death: Embracing Sustainability from Cradle to Grave​"
 description: "The funeral industry is slowly waking up to the need for more eco-friendly practices. With over 500,000 deaths per year in the UK, traditional burials and cremations have a massive carbon footprint. Embalming fluids leach into the soil, coffins use timber and metal resources, and cremations require huge amounts of fossil fuel. However, there is a better way - human composting."
+featuredImage: "/images/2023/08/DALL·E-2023-08-09-10.14.31-A-hand-holding-some-compost-soft-background-is-a-lush-British-woodland.png"
 pubDate: 2023-08-09
 modDate: 2024-09-05
 categories: ["Human Composting"]

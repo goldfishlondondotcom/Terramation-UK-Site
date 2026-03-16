@@ -1,6 +1,7 @@
 ---
 title: "The Most Sustainable Funeral Options in the UK​"
 description: "Discover the most sustainable funeral options in the UK, including eco-friendly burials, human composting and more. Learn about their benefits, leading companies, and estimated costs."
+featuredImage: "/images/2023/03/noah-buscher-x8ZStukS2PM-unsplash-1024x586.jpg"
 pubDate: 2023-03-31
 modDate: 2024-09-05
 categories: ["Human Composting"]

@@ -1,6 +1,7 @@
 ---
 title: "New estimated cost of human composting in the UK"
 description: "A new article in the Mirror has a price estimate for human composting in the UK"
+featuredImage: "/images/2024/04/DALL·E-2024-04-02-15.53.04-Create-a-photorealistic-image-of-a-hand-gently-holding-rich-fertile-compost-with-the-warm-golden-light-of-the-evening-sun-casting-a-soft-glow-over-.webp"
 pubDate: 2024-04-02
 categories: ["Uncategorized"]
 ---

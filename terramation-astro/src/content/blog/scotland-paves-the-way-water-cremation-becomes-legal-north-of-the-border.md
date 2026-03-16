@@ -1,6 +1,7 @@
 ---
 title: "Scotland Paves the Way: Water Cremation Becomes Legal North of the Border"
 description: "In a landmark moment for the UK funeral industry, Scotland has become the first nation within the UK to formally legalise alkaline hydrolysis — a process widely known as aquamation or water cremation."
+featuredImage: "/images/2026/03/Screenshot-2026-03-05-at-16.46.15.png"
 pubDate: 2026-03-05
 categories: ["UK News"]
 ---

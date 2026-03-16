@@ -1,8 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import NewsletterForm from "../../components/NewsletterForm.astro";
-
-const submitted = Astro.url.searchParams.get("submitted") === "true";
 ---
 
 <BaseLayout
@@ -45,8 +43,8 @@ const submitted = Astro.url.searchParams.get("submitted") === "true";
             <span class="contact-info__icon" aria-hidden="true">✉️</span>
             <div>
               <span class="contact-info__label">Email us</span>
-              <a href="mailto:info@terramationuk.com" class="contact-info__value">
-                info@terramationuk.com
+              <a href="mailto:info@terramation.uk" class="contact-info__value">
+                info@terramation.uk
               </a>
             </div>
           </div>
@@ -77,20 +75,11 @@ const submitted = Astro.url.searchParams.get("submitted") === "true";
         <!-- Form column -->
         <div>
           <h2 style="margin-block-end:var(--space-6);">Send us a message</h2>
-          {submitted && (
-            <p class="form-success" role="status">
-              Thanks for getting in touch. Your message has been sent and we will reply as soon as we can.
-            </p>
-          )}
           <form
             class="contact-form"
             method="POST"
-            name="contact"
-            action="/contact/?submitted=true"
-            data-netlify="true"
-            netlify-honeypot="bot-field"
+            data-contact-form
           >
-            <input type="hidden" name="form-name" value="contact" />
             <p class="visually-hidden">
               <label for="bot-field">
                 Do not fill out this field if you're human
@@ -118,11 +107,29 @@ const submitted = Astro.url.searchParams.get("submitted") === "true";
               <textarea id="message" name="message" required placeholder="Tell us how we can help…"></textarea>
             </div>
 
+            <div class="contact-form__consent">
+              <label class="contact-form__checkbox-label">
+                <input
+                  type="checkbox"
+                  name="marketingOptIn"
+                  value="on"
+                  class="contact-form__checkbox"
+                />
+                <span>
+                  I would also like to receive email updates from Terramation UK.
+                  If ticked, my details will be added to Brevo list 6. See our
+                  <a href="/privacy-policy/"> privacy policy</a>.
+                </span>
+              </label>
+            </div>
+
             <button type="submit" class="btn btn--primary">Send message</button>
+
+            <div class="contact-form__status" role="status" aria-live="polite" hidden></div>
           </form>
           <p class="contact-form__note">
-            The contact form is handled securely by Netlify. If you prefer, you can still email
-            <a href="mailto:info@terramationuk.com"> info@terramationuk.com</a>.
+            Messages are emailed directly to <a href="mailto:info@terramation.uk">info@terramation.uk</a>.
+            If you tick the opt-in box, you'll also be added to our campaign updates list.
           </p>
         </div>
 
@@ -143,3 +150,52 @@ const submitted = Astro.url.searchParams.get("submitted") === "true";
   </section>
 
 </BaseLayout>
+
+<script>
+  const contactForm = document.querySelector<HTMLFormElement>("[data-contact-form]");
+  const statusEl = contactForm?.querySelector<HTMLElement>(".contact-form__status");
+
+  function showStatus(message: string, isError: boolean) {
+    if (!statusEl) return;
+    statusEl.textContent = message;
+    statusEl.hidden = false;
+    statusEl.className = `contact-form__status ${isError ? "contact-form__status--error" : "contact-form__status--success"}`;
+  }
+
+  contactForm?.addEventListener("submit", async (event: SubmitEvent) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const submitButton = form.querySelector("button[type='submit']");
+
+    if (!(form instanceof HTMLFormElement) || !(submitButton instanceof HTMLButtonElement)) {
+      return;
+    }
+
+    submitButton.disabled = true;
+    submitButton.textContent = "Sending…";
+
+    if (statusEl) {
+      statusEl.hidden = true;
+    }
+
+    try {
+      const response = await fetch("/api/contact/", {
+        method: "POST",
+        body: new FormData(form),
+      });
+
+      const data = await response.json() as { success: boolean; message: string };
+      showStatus(data.message, !data.success);
+
+      if (data.success) {
+        form.reset();
+      }
+    } catch {
+      showStatus("Something went wrong. Please try again or email info@terramation.uk.", true);
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = "Send message";
+    }
+  });
+</script>

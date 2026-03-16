@@ -1,6 +1,7 @@
 ---
 title: "Resomation to be offered in the UK"
 description: "Resomation is a process that liquefies rather than burns body tissues. It's to be legalised in the UK."
+featuredImage: "/images/2023/07/54550355_resomation_shell-1.jpg"
 pubDate: 2023-07-03
 modDate: 2024-09-05
 categories: ["UK News"]

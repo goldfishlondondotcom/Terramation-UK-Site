@@ -183,7 +183,7 @@ blockquote {
 }
 
 .site-header__logo img {
-  height: 44px;
+  height: 34px;
   width: auto;
 }
 
@@ -816,6 +816,72 @@ blockquote {
   padding: var(--space-6);
 }
 
+.process-flow {
+  display: grid;
+  gap: var(--space-8);
+  margin-block: var(--space-10);
+}
+
+.process-step {
+  display: grid;
+  grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
+  gap: clamp(var(--space-5), 3vw, var(--space-8));
+  align-items: center;
+  padding: clamp(var(--space-5), 3vw, var(--space-8));
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.process-step:nth-child(even) {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 220px);
+}
+
+.process-step:nth-child(even) .process-step__media {
+  order: 2;
+}
+
+.process-step__media img {
+  width: 100%;
+  max-width: 220px;
+  margin: 0 auto;
+}
+
+.process-step__eyebrow {
+  display: inline-block;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--color-sage);
+  margin-bottom: var(--space-2);
+}
+
+.process-step h3 {
+  margin: 0 0 var(--space-3);
+}
+
+.process-step p {
+  margin: 0;
+  color: var(--color-text-mid);
+}
+
+@media (max-width: 720px) {
+  .process-step,
+  .process-step:nth-child(even) {
+    grid-template-columns: 1fr;
+  }
+
+  .process-step:nth-child(even) .process-step__media {
+    order: 0;
+  }
+
+  .process-step__media img {
+    max-width: 180px;
+  }
+}
+
 /* ── Blog listing ─────────────────────────────────────── */
 .blog-listing {
   padding-block: clamp(var(--space-10), 5vw, var(--space-16));
@@ -911,6 +977,46 @@ blockquote {
   font-size: var(--text-sm);
   color: var(--color-text-mid);
   margin-block-start: var(--space-4);
+}
+
+.contact-form__consent {
+  margin-top: calc(var(--space-2) * -1);
+}
+
+.contact-form__checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--color-text-mid);
+  line-height: 1.6;
+}
+
+.contact-form__checkbox {
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.2rem;
+  accent-color: var(--color-forest);
+  flex-shrink: 0;
+}
+
+.contact-form__status {
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  padding: var(--space-4);
+}
+
+.contact-form__status--success {
+  background-color: rgba(45, 90, 39, 0.1);
+  border: 1px solid rgba(45, 90, 39, 0.2);
+  color: var(--color-forest-dark);
+}
+
+.contact-form__status--error {
+  background-color: rgba(184, 114, 42, 0.1);
+  border: 1px solid rgba(184, 114, 42, 0.25);
+  color: var(--color-soil);
 }
 
 .form-field {

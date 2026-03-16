@@ -1,6 +1,7 @@
 ---
 title: "The environmental benefits of human composting​"
 description: "Find out the environmental benefits of human composting and terramation."
+featuredImage: "/images/2023/03/107195063-1676478340600-Posed_dummy_in_Recompose_Cradle.jpg"
 pubDate: 2023-03-26
 modDate: 2024-09-05
 categories: ["Human Composting"]

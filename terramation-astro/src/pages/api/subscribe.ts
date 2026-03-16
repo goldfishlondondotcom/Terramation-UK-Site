@@ -126,7 +126,7 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   return new Response(
-    JSON.stringify({ success: false, message: "Something went wrong. Please try again or email info@terramationuk.com." }),
+    JSON.stringify({ success: false, message: "Something went wrong. Please try again or email info@terramation.uk." }),
     { status: 500, headers: { "Content-Type": "application/json" } },
   );
 };

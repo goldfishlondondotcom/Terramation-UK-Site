@@ -1,6 +1,7 @@
 ---
 title: "The Church of England is considering legalising human composting"
 description: "General Synod to discuss more suitable funeral options in the UK"
+featuredImage: "/images/2023/05/Keith-Blundy-32-1024x683.jpg"
 pubDate: 2023-05-10
 categories: ["Human Composting","UK News"]
 ---

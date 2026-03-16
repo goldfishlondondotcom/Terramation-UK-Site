@@ -1,6 +1,7 @@
 ---
 title: "Human Composting Cost in the UK: What Terramation Costs in the UK"
 description: "How much does a human composting funeral cost in the UK?"
+featuredImage: "/images/2023/04/02_Terramation-Vessel-01-3.png"
 pubDate: 2023-04-18
 modDate: 2023-05-10
 categories: ["Human Composting"]

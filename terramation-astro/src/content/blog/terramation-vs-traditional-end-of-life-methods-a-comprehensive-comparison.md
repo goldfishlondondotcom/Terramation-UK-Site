@@ -1,6 +1,7 @@
 ---
 title: "Terramation vs. Traditional End-of-Life Methods: A Comprehensive Comparison"
 description: "Explore the differences between terramation, also known as human composting, and traditional end-of-life methods. Discover the environmental benefits, process, and impact on the planet."
+featuredImage: "/images/2023/04/Preparation-01.png"
 pubDate: 2023-03-31
 modDate: 2023-05-10
 categories: ["Human Composting"]

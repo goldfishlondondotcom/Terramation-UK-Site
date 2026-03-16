@@ -24,6 +24,7 @@ const { post }  = Astro.props;
 const rendered  = await render(post);
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
+const ogImage = post.data.featuredImage || "/images/2023/03/terramation_UK_home-of-composting-1024x810.png";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -50,6 +51,7 @@ const jsonLd = {
     "@type": "WebPage",
     "@id": canonicalUrl,
   },
+  "image": [new URL(ogImage, Astro.site).toString()],
   "articleSection": post.data.categories?.[0] || "Human Composting",
   "keywords": post.data.categories?.join(", ") || "human composting, terramation, sustainable funerals",
 };
@@ -64,6 +66,7 @@ function formatDate(date: Date) {
 <BaseLayout
   title={`${post.data.title} | Terramation UK`}
   description={post.data.description}
+  ogImage={ogImage}
 >
   <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 

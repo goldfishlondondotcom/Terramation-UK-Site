@@ -1,6 +1,7 @@
 ---
 title: "A Step Closer to Legalisation: Updates on the Campaign for Human Composting in the UK"
 description: "Human composting is a sustainable and respectful way to dispose of human remains. Learn more about the campaign to legalize human composting in the UK."
+featuredImage: "/images/2023/05/seth-cottle-lyMZdag-zgQ-unsplash-1024x683.jpg"
 pubDate: 2023-05-10
 modDate: 2023-07-03
 categories: ["Human Composting"]
