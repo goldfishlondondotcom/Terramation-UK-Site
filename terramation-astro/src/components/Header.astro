@@ -1,0 +1,63 @@
+---
+const currentPath = Astro.url.pathname;
+
+const nav = [
+  { label: "Home",               href: "/" },
+  { label: "What is Terramation?", href: "/2023/03/21/what-is-terramation/" },
+  { label: "Blog",               href: "/blog/" },
+  { label: "Contact",            href: "/contact/" },
+];
+---
+
+<header class="site-header" role="banner">
+  <div class="container">
+    <div class="site-header__inner">
+      <a href="/" class="site-header__logo" aria-label="Terramation UK — home">
+        <img
+          src="/images/2023/03/Terramation-UK-768x71.png"
+          alt="Terramation UK"
+          width="220"
+          height="20"
+        />
+      </a>
+
+      <button
+        class="nav-toggle"
+        aria-controls="main-nav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6"  x2="21" y2="6"  class="nav-icon-open" />
+          <line x1="3" y1="12" x2="21" y2="12" class="nav-icon-open" />
+          <line x1="3" y1="18" x2="21" y2="18" class="nav-icon-open" />
+        </svg>
+      </button>
+
+      <nav aria-label="Main navigation">
+        <ul class="site-nav" id="main-nav" role="list">
+          {nav.map(({ label, href }) => (
+            <li class:list={[href === "/contact/" && "site-nav__cta"]}>
+              <a
+                href={href}
+                aria-current={currentPath === href || (href !== "/" && currentPath.startsWith(href)) ? "page" : undefined}
+              >
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector('.nav-toggle') as HTMLButtonElement;
+  const nav    = document.getElementById('main-nav');
+
+  toggle?.addEventListener('click', () => {
+    const open = nav?.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+</script>

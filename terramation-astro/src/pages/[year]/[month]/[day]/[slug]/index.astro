@@ -1,0 +1,125 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../../../../layouts/BaseLayout.astro";
+import NewsletterForm from "../../../../../components/NewsletterForm.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+
+  return posts.map((post) => {
+    const date  = post.data.pubDate;
+    const year  = String(date.getFullYear());
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day   = String(date.getDate()).padStart(2, "0");
+    const slug  = post.id.replace(/\.md$/, "");
+
+    return {
+      params: { year, month, day, slug },
+      props:  { post },
+    };
+  });
+}
+
+const { post }  = Astro.props;
+const rendered  = await render(post);
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": post.data.title,
+  "description": post.data.description,
+  "datePublished": post.data.pubDate.toISOString(),
+  "dateModified": (post.data.modDate || post.data.pubDate).toISOString(),
+  "author": {
+    "@type": "Organization",
+    "name": "Terramation UK",
+    "url": "https://terramation.uk",
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Terramation UK",
+    "url": "https://terramation.uk",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://terramation.uk/images/2023/03/Terramation-UK-768x71.png",
+    },
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": canonicalUrl,
+  },
+  "articleSection": post.data.categories?.[0] || "Human Composting",
+  "keywords": post.data.categories?.join(", ") || "human composting, terramation, sustainable funerals",
+};
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString("en-GB", {
+    day: "numeric", month: "long", year: "numeric",
+  });
+}
+---
+
+<BaseLayout
+  title={`${post.data.title} | Terramation UK`}
+  description={post.data.description}
+>
+  <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <!-- Post header -->
+  <div class="post-header">
+    <div class="container container--narrow">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb__sep" aria-hidden="true">/</span>
+        <a href="/blog/">Blog</a>
+        <span class="breadcrumb__sep" aria-hidden="true">/</span>
+        <span aria-current="page">{post.data.title}</span>
+      </nav>
+
+      <div class="post-header__meta">
+        {post.data.categories && post.data.categories.length > 0 ? (
+          <span class="post-header__category">{post.data.categories[0]}</span>
+        ) : (
+          <span class="post-header__category">Human Composting</span>
+        )}
+        <time class="post-header__date" datetime={post.data.pubDate.toISOString()}>
+          {formatDate(post.data.pubDate)}
+        </time>
+      </div>
+
+      <h1>{post.data.title}</h1>
+      <p class="post-header__description">{post.data.description}</p>
+    </div>
+  </div>
+
+  <!-- Post body -->
+  <div class="post-body">
+    <div class="container">
+      <article class="prose">
+        <rendered.Content />
+      </article>
+
+      <!-- Newsletter sign-up -->
+      <div style="max-width:var(--content-width); margin-inline:auto; margin-block-start:var(--space-16);">
+        <div style="background:var(--color-forest-dark); border-radius:var(--radius-lg); padding:clamp(var(--space-8),4vw,var(--space-12));">
+          <NewsletterForm
+            variant="stacked"
+            heading="Stay updated on the campaign"
+            subtext="Get the latest news on human composting legislation in the UK. Occasional emails only. Unsubscribe any time."
+            dark={true}
+          />
+        </div>
+      </div>
+
+      <!-- Back link -->
+      <div style="max-width:var(--content-width); margin-inline:auto; margin-block-start:var(--space-10);">
+        <a href="/blog/" style="font-size:var(--text-sm); font-weight:700; color:var(--color-forest); text-decoration:none;">
+          ← Back to all posts
+        </a>
+      </div>
+    </div>
+  </div>
+
+</BaseLayout>

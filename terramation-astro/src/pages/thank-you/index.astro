@@ -1,0 +1,38 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Thank You | Terramation UK"
+  description="Thanks for supporting Terramation UK and the Close the Circle campaign."
+  noindex={true}
+>
+  <div class="page-header">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb__sep" aria-hidden="true">/</span>
+        <span aria-current="page">Thank You</span>
+      </nav>
+      <h1>Thank you</h1>
+      <p class="page-header__sub">
+        Your support helps keep the campaign for human composting moving forward in the UK.
+      </p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="campaign-banner">
+        <div class="campaign-banner__content">
+          <h2>You are all set</h2>
+          <p>
+            If you arrived here from an email confirmation, your sign-up has been completed successfully. If you sent us
+            a message, we will reply as soon as possible.
+          </p>
+        </div>
+        <a href="/blog/" class="btn btn--primary">Read the latest updates</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

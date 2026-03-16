@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Block WordPress paths that no longer exist (saves crawl budget)
+Disallow: /wp-admin/
+Disallow: /wp-login.php
+Disallow: /xmlrpc.php
+Disallow: /wp-content/
+Disallow: /2023-old/
+
+Sitemap: https://terramation.uk/sitemap-index.xml
