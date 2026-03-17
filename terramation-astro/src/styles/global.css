@@ -1101,6 +1101,12 @@ blockquote {
   text-transform: uppercase;
 }
 
+.featured-provider__logo img {
+  max-width: 100%;
+  max-height: 120px;
+  object-fit: contain;
+}
+
 .featured-provider__meta {
   display: flex;
   flex-wrap: wrap;
