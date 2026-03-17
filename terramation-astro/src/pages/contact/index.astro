@@ -1,6 +1,11 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import NewsletterForm from "../../components/NewsletterForm.astro";
+
+const topic = Astro.url.searchParams.get("topic");
+const subjectPlaceholder = topic === "advertising"
+  ? "Advertising / Featured listing / Sponsorship"
+  : "Campaign / Enquiry / Advertising";
 ---
 
 <BaseLayout
@@ -99,7 +104,7 @@ import NewsletterForm from "../../components/NewsletterForm.astro";
 
             <div class="form-field">
               <label for="subject">Subject</label>
-              <input type="text" id="subject" name="subject" placeholder="Campaign / Enquiry / Advertising" />
+              <input type="text" id="subject" name="subject" value={topic === "advertising" ? "Advertising enquiry" : undefined} placeholder={subjectPlaceholder} />
             </div>
 
             <div class="form-field">

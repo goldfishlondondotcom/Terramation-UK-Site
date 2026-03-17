@@ -1,0 +1,128 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const placements = [
+  {
+    title: "Featured Provider",
+    description:
+      "A premium listing block on the Find Sustainable Funerals page with priority visibility, stronger branding space, and direct click-throughs.",
+    includes: [
+      "Priority placement near the top of the directory",
+      "Prominent CTA button to your website",
+      "Brand-forward presentation for high-intent visitors",
+    ],
+  },
+  {
+    title: "Category Sponsorship",
+    description:
+      "Own a relevant category such as natural burials or water cremation with exclusive visibility around readers comparing options.",
+    includes: [
+      "Exclusive category presence",
+      "Brand mention within category context",
+      "Ideal for providers aligned to a single service area",
+    ],
+  },
+  {
+    title: "Sponsored Content Bundle",
+    description:
+      "Pair directory visibility with editorial exposure through a sponsored article and newsletter support.",
+    includes: [
+      "Directory visibility",
+      "Sponsored article opportunity",
+      "Optional newsletter inclusion",
+    ],
+  },
+];
+
+const audienceSignals = [
+  "Visitors actively researching greener funeral choices in the UK",
+  "Readers comparing natural burial, resomation, and human composting options",
+  "Audience interest in legislation, providers, and sustainable end-of-life planning",
+];
+---
+
+<BaseLayout
+  title="Advertise with Terramation UK | Sustainable Funeral Audience"
+  description="Reach people already researching sustainable funeral options in the UK through directory placements, category sponsorships, and sponsored content."
+>
+  <div class="page-header">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb__sep" aria-hidden="true">/</span>
+        <span aria-current="page">Advertise</span>
+      </nav>
+      <h1>Advertise with Terramation UK</h1>
+      <p class="page-header__sub">
+        Reach readers already looking for sustainable funeral providers, greener alternatives, and trusted guidance in the UK.
+      </p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="advertise-hero">
+        <div class="advertise-hero__content">
+          <p class="advertise-hero__eyebrow">Why advertise here</p>
+          <h2>We attract a niche audience with strong intent and a clear interest in sustainable funeral choices.</h2>
+          <p>
+            Terramation UK sits at the intersection of education, legislation, and provider discovery. That makes it a useful
+            place for relevant brands to show up early in the decision journey.
+          </p>
+          <div class="advertise-hero__actions">
+            <a href="/contact/?topic=advertising" class="btn btn--primary">Enquire about advertising</a>
+            <a href="/find-sustainable-funerals/" class="btn btn--outline advertise-hero__secondary">View the directory</a>
+          </div>
+        </div>
+        <div class="advertise-hero__card">
+          <p class="advertise-hero__card-label">Audience signals</p>
+          <ul class="advertise-signal-list">
+            {audienceSignals.map((signal) => (
+              <li>{signal}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tinted">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__eyebrow">Inventory</span>
+        <h2 class="section__title">Advertising options</h2>
+        <p class="section__subtitle">
+          Start simple with placements that are directly connected to active provider research.
+        </p>
+      </div>
+
+      <div class="advertise-grid">
+        {placements.map((placement) => (
+          <article class="advertise-card">
+            <h3>{placement.title}</h3>
+            <p class="advertise-card__description">{placement.description}</p>
+            <ul class="advertise-card__list">
+              {placement.includes.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+            <a href="/contact/?topic=advertising" class="btn btn--earth">Ask about this option</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="directory-cta">
+        <h2>Best fit for advertisers</h2>
+        <p>
+          We are most relevant to natural burial providers, eco-focused funeral brands, memorial services, water cremation
+          operators, and aligned organisations in the sustainable end-of-life space.
+        </p>
+        <a href="/contact/?topic=advertising" class="btn btn--primary">Start a conversation</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
