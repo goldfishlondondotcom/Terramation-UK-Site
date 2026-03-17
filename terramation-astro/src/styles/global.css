@@ -192,6 +192,7 @@ blockquote {
 }
 
 .site-header__logo img {
+  display: block;
   height: 30px;
   width: auto;
 }
@@ -359,8 +360,11 @@ blockquote {
 }
 
 .site-footer__brand-logo {
+  display: block;
   height: 28px;
   width: auto;
+  max-width: min(100%, 320px);
+  object-fit: contain;
   filter: brightness(0) invert(1) opacity(.85);
 }
 
