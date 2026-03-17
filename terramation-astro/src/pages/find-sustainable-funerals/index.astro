@@ -1,6 +1,22 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
+const featuredProvider = {
+  label: "Featured Provider",
+  sponsorship: "Sponsored placement",
+  name: "Your Brand Here",
+  category: "Example: Natural Burial / Eco Funeral Director / Memorial Service",
+  summary:
+    "This premium slot sits above the directory and is designed for providers who want the strongest visibility on the page.",
+  highlights: [
+    "Top-of-page placement for high-intent visitors",
+    "Space for your logo, positioning, and direct CTA",
+    "Ideal for featured listings and premium sponsorship packages",
+  ],
+  href: "/contact/?topic=advertising",
+  cta: "Enquire about this slot",
+};
+
 const options = [
   {
     title: "Natural burials",
@@ -13,11 +29,13 @@ const options = [
         name: "Woodland Burial Grounds",
         href: "https://woodlandburialtrust.com",
         note: "Natural burial option with woodland-focused memorial settings.",
+        sponsored: false,
       },
       {
         name: "Natural Death Centre",
         href: "https://naturaldeath.org.uk",
         note: "UK-wide guidance and directory for natural burial grounds and funeral planning.",
+        sponsored: false,
       },
     ],
   },
@@ -32,11 +50,13 @@ const options = [
         name: "Rowley Regis Crematorium",
         href: "https://www.sandwell.gov.uk/info/200222/bereavement_services/778/rowley_regis_crematorium",
         note: "Referenced in the original guide as an early UK location linked to greener cremation services.",
+        sponsored: false,
       },
       {
         name: "Resomation Ltd",
         href: "https://resomation.com",
         note: "Technology provider behind water cremation systems.",
+        sponsored: false,
       },
     ],
   },
@@ -60,6 +80,7 @@ const options = [
         name: "Promessa Organic AB",
         href: "https://promessa.se/en/",
         note: "Swedish company developing the promession process.",
+        sponsored: false,
       },
     ],
   },
@@ -127,6 +148,33 @@ const options = [
 
   <section class="section section--tinted">
     <div class="container">
+      <div class="featured-provider">
+        <div class="featured-provider__media">
+          <div class="featured-provider__logo">
+            <span>Featured logo</span>
+          </div>
+        </div>
+
+        <div class="featured-provider__content">
+          <div class="featured-provider__meta">
+            <span class="featured-provider__label">{featuredProvider.label}</span>
+            <span class="featured-provider__sponsorship">{featuredProvider.sponsorship}</span>
+          </div>
+          <h2>{featuredProvider.name}</h2>
+          <p class="featured-provider__category">{featuredProvider.category}</p>
+          <p class="featured-provider__summary">{featuredProvider.summary}</p>
+          <ul class="featured-provider__list">
+            {featuredProvider.highlights.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+          <div class="featured-provider__actions">
+            <a href={featuredProvider.href} class="btn btn--earth">{featuredProvider.cta}</a>
+            <a href="/advertise/" class="btn btn--outline featured-provider__secondary">View advertising options</a>
+          </div>
+        </div>
+      </div>
+
       <div class="provider-directory">
         {options.map((option) => (
           <article class="provider-card">
@@ -148,9 +196,12 @@ const options = [
                   {option.providers.map((provider) => (
                     <li class="provider-list__item">
                       <div class="provider-list__topline">
-                        <a href={provider.href} target="_blank" rel="noopener noreferrer" class="provider-list__title">
-                          {provider.name}
-                        </a>
+                        <div class="provider-list__title-wrap">
+                          {provider.sponsored && <span class="provider-list__badge">Sponsored</span>}
+                          <a href={provider.href} target="_blank" rel="noopener noreferrer" class="provider-list__title">
+                            {provider.name}
+                          </a>
+                        </div>
                         <a
                           href={provider.href}
                           target="_blank"
