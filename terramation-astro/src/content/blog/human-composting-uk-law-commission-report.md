@@ -6,8 +6,6 @@ pubDate: 2026-06-09
 categories: ["UK News", "Human Composting"]
 ---
 
-# Human composting in the UK: a clear legal path is taking shape
-
 This month the Law Commission published a report that could change how England and Wales treat new funeral methods, including human composting (terramation) and water cremation.
 
 For years the law has only recognised three options: burial, cremation, and burial at sea. Everything else has been stuck in a legal grey area. The new report sets out a way to fix that.
