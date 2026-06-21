@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import NewsletterForm from "../components/NewsletterForm.astro";
 import PostCard from "../components/PostCard.astro";
+import RegisterInterestCTA from "../components/RegisterInterestCTA.astro";
 import { getCollection } from "astro:content";
 
 const allPosts = await getCollection("blog");
@@ -74,6 +75,9 @@ function postUrl(post: (typeof allPosts)[number]) {
           <a href="/2023/03/21/what-is-terramation/" class="btn btn--primary" style="margin-block-start:1rem;">
             Learn more
           </a>
+          <div style="margin-block-start:var(--space-8);">
+            <RegisterInterestCTA />
+          </div>
         </div>
         <div>
           <img

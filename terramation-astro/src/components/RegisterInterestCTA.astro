@@ -1,0 +1,53 @@
+---
+---
+
+<div class="ri-cta">
+  <h3 class="ri-cta__heading">Be first to know when it's available</h3>
+  <p class="ri-cta__body">
+    Human composting isn't legal in the UK yet, but the law is moving.
+    Register your interest and we'll tell you the moment it becomes available.
+  </p>
+  <a
+    href="/register-interest/"
+    class="btn btn--primary ri-cta__btn"
+    data-ri-cta-btn
+  >
+    Register your interest
+  </a>
+</div>
+
+<script>
+  document.querySelectorAll("[data-ri-cta-btn]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      window.sa_event?.("register_cta_click");
+    });
+  });
+</script>
+
+<style>
+  .ri-cta {
+    background: var(--color-linen, #f5f0e8);
+    border: 1px solid rgba(45, 90, 39, 0.15);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8) var(--space-10);
+    margin-block-end: var(--space-8);
+  }
+
+  .ri-cta__heading {
+    font-size: var(--text-xl);
+    color: var(--color-forest-dark);
+    margin-block-end: var(--space-3);
+  }
+
+  .ri-cta__body {
+    font-size: var(--text-sm);
+    color: var(--color-text-mid);
+    line-height: 1.6;
+    max-width: 520px;
+    margin-block-end: var(--space-6);
+  }
+
+  .ri-cta__btn {
+    align-self: flex-start;
+  }
+</style>

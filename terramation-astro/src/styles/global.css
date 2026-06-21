@@ -437,6 +437,12 @@ blockquote {
   margin: 0;
 }
 
+.site-footer__divider {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  margin-block: var(--space-6);
+}
+
 /* ── Hero ─────────────────────────────────────────────── */
 .hero {
   position: relative;

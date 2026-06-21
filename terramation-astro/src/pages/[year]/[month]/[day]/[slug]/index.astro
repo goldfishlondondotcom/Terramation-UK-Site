@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../../../../layouts/BaseLayout.astro";
 import NewsletterForm from "../../../../../components/NewsletterForm.astro";
+import RegisterInterestCTA from "../../../../../components/RegisterInterestCTA.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -104,8 +105,11 @@ function formatDate(date: Date) {
         <rendered.Content />
       </article>
 
-      <!-- Newsletter sign-up -->
+      <!-- Register interest nudge + campaign sign-up -->
       <div style="max-width:var(--content-width); margin-inline:auto; margin-block-start:var(--space-16);">
+        {post.data.registerCta !== false && (
+          <RegisterInterestCTA />
+        )}
         <div style="background:var(--color-forest-dark); border-radius:var(--radius-lg); padding:clamp(var(--space-8),4vw,var(--space-12));">
           <NewsletterForm
             variant="stacked"
