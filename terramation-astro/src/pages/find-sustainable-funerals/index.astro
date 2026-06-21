@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { featuredProvider, providerCategories } from "../../data/provider-directory";
+import RegisterInterestForm from "../../components/RegisterInterestForm.astro";
 
 const providerSplitIndex = Math.ceil(providerCategories.length / 2);
 const topProviderCategories = providerCategories.slice(0, providerSplitIndex);
@@ -117,6 +118,13 @@ const bottomProviderCategories = providerCategories.slice(providerSplitIndex);
                   ))}
                 </ul>
               </div>
+            ) : option.registerInterest ? (
+              <div class="provider-card__empty">
+                <p class="provider-card__note">
+                  There are currently no UK providers to list — human composting is not yet legal here. Register your interest below and we will let you know the moment it becomes available.
+                </p>
+                <RegisterInterestForm />
+              </div>
             ) : (
               <div class="provider-card__empty">
                 <p class="provider-card__note">
@@ -182,6 +190,13 @@ const bottomProviderCategories = providerCategories.slice(providerSplitIndex);
                     </li>
                   ))}
                 </ul>
+              </div>
+            ) : option.registerInterest ? (
+              <div class="provider-card__empty">
+                <p class="provider-card__note">
+                  There are currently no UK providers to list — human composting is not yet legal here. Register your interest below and we will let you know the moment it becomes available.
+                </p>
+                <RegisterInterestForm />
               </div>
             ) : (
               <div class="provider-card__empty">

@@ -11,6 +11,7 @@ export interface ProviderCategory {
   summary: string;
   estimatedCost: string;
   providers: ProviderEntry[];
+  registerInterest?: boolean;
 }
 
 export interface FeaturedProviderSlot {
@@ -94,6 +95,7 @@ export const providerCategories: ProviderCategory[] = [
     estimatedCost:
       "Not yet priced in the UK. US pricing has typically ranged from about $3,000 to $5,000.",
     providers: [],
+    registerInterest: true,
   },
   {
     title: "Promession",

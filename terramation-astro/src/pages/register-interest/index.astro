@@ -1,0 +1,31 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import RegisterInterestForm from "../../components/RegisterInterestForm.astro";
+---
+
+<BaseLayout
+  title="Register your interest in human composting in the UK | Terramation UK"
+  description="Human composting is not yet legal in the UK, but the law is changing. Register your interest and we'll let you know the moment it becomes available."
+>
+  <div class="page-header">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb__sep" aria-hidden="true">/</span>
+        <span aria-current="page">Register your interest</span>
+      </nav>
+      <h1>Register your interest</h1>
+      <p class="page-header__sub">
+        Human composting is not legal in the UK yet, but the law is moving and the first facilities
+        are being planned. Leave your details and we will let you know the moment it becomes
+        available. No obligation.
+      </p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container container--narrow">
+      <RegisterInterestForm />
+    </div>
+  </section>
+</BaseLayout>

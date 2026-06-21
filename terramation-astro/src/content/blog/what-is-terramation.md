@@ -90,3 +90,8 @@ By embracing terramation, the UK can take a significant step towards more sustai
 Additionally, the increased adoption of terramation can help to foster a cultural shift in the way we view death and the environment. As more people choose this sustainable option, it may encourage greater awareness of environmental issues and promote more eco-friendly practices in other areas of life.
 
 Terramation is a promising and environmentally friendly alternative to traditional burial and cremation methods. As the UK continues to seek ways to reduce its environmental impact, terramation provides a sustainable and eco-conscious approach to death care. By choosing terramation, we can honour our loved ones while also caring for the planet we all share.
+
+<div class="post-cta">
+  <p>Human composting isn't legal in the UK yet. Register your interest and we'll tell you the moment it is.</p>
+  <a href="/register-interest/" class="btn btn--primary">Register my interest</a>
+</div>

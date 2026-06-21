@@ -1,0 +1,283 @@
+---
+const formId = `ri-form-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<div class="ri-form">
+  <form
+    id={formId}
+    class="ri-form__form"
+    novalidate
+    data-ri-form
+  >
+    <div class="ri-form__fields">
+      <!-- Email -->
+      <div class="ri-form__field">
+        <label for={`${formId}-email`} class="ri-form__label">
+          Email address <span class="ri-form__required" aria-hidden="true">*</span>
+        </label>
+        <input
+          type="email"
+          id={`${formId}-email`}
+          name="email"
+          autocomplete="email"
+          required
+          aria-required="true"
+          class="ri-form__input"
+          placeholder="your@email.com"
+        />
+      </div>
+
+      <!-- First name -->
+      <div class="ri-form__field">
+        <label for={`${formId}-firstname`} class="ri-form__label">
+          First name <span class="ri-form__optional">(optional)</span>
+        </label>
+        <input
+          type="text"
+          id={`${formId}-firstname`}
+          name="firstName"
+          autocomplete="given-name"
+          class="ri-form__input"
+          placeholder="Jane"
+        />
+      </div>
+
+      <!-- Region -->
+      <div class="ri-form__field">
+        <label for={`${formId}-region`} class="ri-form__label">
+          Which part of the UK are you in? <span class="ri-form__optional">(optional)</span>
+        </label>
+        <input
+          type="text"
+          id={`${formId}-region`}
+          name="region"
+          autocomplete="address-level1"
+          class="ri-form__input"
+          placeholder="e.g. Scotland, South West England"
+          aria-describedby={`${formId}-region-hint`}
+        />
+        <span id={`${formId}-region-hint`} class="ri-form__hint">
+          Helps us see where demand is building.
+        </span>
+      </div>
+    </div>
+
+    <!-- Honeypot — hidden from real users -->
+    <div aria-hidden="true" class="visually-hidden">
+      <label for={`${formId}-website`}>Website</label>
+      <input
+        type="text"
+        id={`${formId}-website`}
+        name="website"
+        tabindex="-1"
+        autocomplete="off"
+      />
+    </div>
+
+    <!-- Consent -->
+    <div class="ri-form__consent">
+      <label class="ri-form__checkbox-label">
+        <input
+          type="checkbox"
+          name="consent"
+          value="on"
+          required
+          aria-required="true"
+          class="ri-form__checkbox"
+        />
+        <span class="ri-form__checkbox-text">
+          Please let me know when human composting becomes available in the UK.
+          I agree to receive related updates from Terramation UK and understand
+          I can unsubscribe at any time. See our <a href="/privacy-policy/">privacy policy</a>.
+        </span>
+      </label>
+    </div>
+
+    <button type="submit" class="ri-form__submit btn btn--primary">
+      Register my interest
+    </button>
+
+    <div
+      role="alert"
+      aria-live="polite"
+      class="ri-form__status"
+      id={`${formId}-status`}
+      hidden
+    ></div>
+  </form>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>("[data-ri-form]").forEach((form) => {
+    const statusEl = document.getElementById(`${form.id}-status`) as HTMLElement | null;
+
+    function showStatus(message: string, isError: boolean) {
+      if (!statusEl) return;
+      statusEl.textContent = message;
+      statusEl.hidden = false;
+      statusEl.className = `ri-form__status ${isError ? "ri-form__status--error" : "ri-form__status--success"}`;
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const submitBtn   = form.querySelector<HTMLButtonElement>("button[type='submit']");
+      const emailInput  = form.querySelector<HTMLInputElement>('[name="email"]');
+      const consentInput = form.querySelector<HTMLInputElement>('[name="consent"]');
+
+      if (!emailInput?.value || !emailInput.checkValidity()) {
+        showStatus("Please enter a valid email address.", true);
+        emailInput?.focus();
+        return;
+      }
+
+      if (!consentInput?.checked) {
+        showStatus("Please tick the consent box to continue.", true);
+        consentInput?.focus();
+        return;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending…";
+      }
+      if (statusEl) statusEl.hidden = true;
+
+      const formData = new FormData(form);
+
+      try {
+        const res = await fetch("/api/register-interest/", {
+          method: "POST",
+          body: formData,
+        });
+
+        const data = await res.json() as { success: boolean; message: string };
+        showStatus(data.message, !data.success);
+
+        if (data.success) {
+          form.reset();
+        }
+      } catch {
+        showStatus("Something went wrong. Please try again or email info@terramation.uk.", true);
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Register my interest";
+        }
+      }
+    });
+  });
+</script>
+
+<style>
+  .ri-form {
+    width: 100%;
+  }
+
+  .ri-form__fields {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-block-end: var(--space-4);
+  }
+
+  .ri-form__field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .ri-form__label {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text-mid);
+  }
+
+  .ri-form__required {
+    color: #c0392b;
+  }
+
+  .ri-form__optional {
+    font-weight: 400;
+    color: var(--color-text-light);
+    font-size: var(--text-xs);
+  }
+
+  .ri-form__input {
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    color: var(--color-text);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-3) var(--space-4);
+    width: 100%;
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+  }
+
+  .ri-form__input:focus {
+    outline: none;
+    border-color: var(--color-forest);
+    box-shadow: 0 0 0 3px rgba(45, 90, 39, 0.15);
+  }
+
+  .ri-form__hint {
+    font-size: var(--text-xs);
+    color: var(--color-text-light);
+  }
+
+  .ri-form__consent {
+    margin-block-end: var(--space-5);
+  }
+
+  .ri-form__checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    cursor: pointer;
+  }
+
+  .ri-form__checkbox {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    margin-block-start: 2px;
+    accent-color: var(--color-forest);
+    cursor: pointer;
+  }
+
+  .ri-form__checkbox-text {
+    font-size: var(--text-sm);
+    color: var(--color-text-mid);
+    line-height: 1.55;
+  }
+
+  .ri-form__checkbox-text a {
+    color: var(--color-forest);
+  }
+
+  .ri-form__submit {
+    align-self: flex-start;
+  }
+
+  .ri-form__status {
+    margin-block-start: var(--space-4);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .ri-form__status--success {
+    background-color: rgba(45, 90, 39, 0.1);
+    color: var(--color-forest-dark);
+    border: 1px solid rgba(45, 90, 39, 0.25);
+  }
+
+  .ri-form__status--error {
+    background-color: rgba(180, 40, 40, 0.08);
+    color: #8b1a1a;
+    border: 1px solid rgba(180, 40, 40, 0.2);
+  }
+</style>
