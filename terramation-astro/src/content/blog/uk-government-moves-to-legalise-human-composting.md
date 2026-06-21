@@ -29,7 +29,7 @@ The Ministry of Justice echoed support. “The Government welcomes the Law Commi
 
 Industry leaders and experts have also voiced support. Co-op Funeralcare – the UK’s largest funeral provider – attempted to pilot water cremation in 2023 but was thwarted by outdated regulations . The company **welcomed** the current review, saying it will help “provide consumers with greater choice and deliver environmental benefits” . Environmental groups note that cremations can emit around 245kg of carbon (equivalent to tens of thousands of smartphone charges) and burials consume land and materials . By contrast, human composting requires no new land or coffins and can turn a body into a cubic yard of life-giving soil. “We encourage exploration into alternative methods that … deliver environmental benefits,” the Co-op spokesperson added .
 
-Advocates for terramation have hailed the government’s openness as a hard-won victory. **Terramation UK**, a campaign promoting human composting, along with the Alkaline Earth Society, gathered over 100,000 signatures in 2022 on a petition urging lawmakers to legalise the practice . 
+Advocates for terramation have hailed the government’s openness as a hard-won victory. **Terramation UK**, a campaign promoting human composting, along with the Alkaline Earth Society, have been urging lawmakers to legalise the practice.
 
 That public pressure helped prompt officials to consider reform.
 
