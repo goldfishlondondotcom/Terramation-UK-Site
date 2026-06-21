@@ -1,0 +1,130 @@
+---
+const currentPath = Astro.url.pathname;
+const suppress = currentPath === "/register-interest/" || currentPath === "/register-interest";
+---
+
+{!suppress && (
+  <div
+    class="announcement-bar"
+    id="announcement-bar"
+    role="region"
+    aria-label="Announcement"
+  >
+    <a
+      href="/register-interest/"
+      class="announcement-bar__link"
+      data-sa-announce
+    >
+      Change is coming.&nbsp; Register your interest <span aria-hidden="true">→</span>
+    </a>
+
+    <button
+      class="announcement-bar__close"
+      aria-label="Dismiss announcement"
+      data-announce-close
+    >
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+)}
+
+<!-- Runs synchronously so the bar is hidden before first paint on dismissed users -->
+<script is:inline>
+  (function () {
+    var KEY = "announcement-dismissed-v1";
+    var bar = document.getElementById("announcement-bar");
+    if (!bar) return;
+    if (localStorage.getItem(KEY)) {
+      bar.hidden = true;
+      return;
+    }
+    var btn = bar.querySelector("[data-announce-close]");
+    if (btn) {
+      btn.addEventListener("click", function () {
+        bar.hidden = true;
+        localStorage.setItem(KEY, "1");
+      });
+    }
+    var link = bar.querySelector("[data-sa-announce]");
+    if (link) {
+      link.addEventListener("click", function () {
+        if (window.sa_event) window.sa_event("register_cta_click");
+      });
+    }
+  })();
+</script>
+
+<style>
+  .announcement-bar {
+    background-color: var(--color-forest);
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+    padding: var(--space-2) var(--space-6);
+    position: relative;
+  }
+
+  .announcement-bar__link {
+    color: var(--color-white);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    line-height: 1.4;
+    /* Leave room for the close button so text stays visually centred */
+    padding-inline: var(--space-8);
+  }
+
+  .announcement-bar__link:hover,
+  .announcement-bar__link:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    outline: none;
+  }
+
+  .announcement-bar__link:focus-visible {
+    outline: 2px solid var(--color-white);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .announcement-bar__close {
+    position: absolute;
+    right: var(--space-4);
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1.25rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    transition: color 150ms ease, background-color 150ms ease;
+  }
+
+  .announcement-bar__close:hover {
+    color: var(--color-white);
+    background-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .announcement-bar__close:focus-visible {
+    outline: 2px solid var(--color-white);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 480px) {
+    .announcement-bar {
+      padding: var(--space-2) var(--space-10) var(--space-2) var(--space-4);
+      justify-content: flex-start;
+    }
+
+    .announcement-bar__link {
+      padding-inline: 0;
+      text-align: left;
+    }
+  }
+</style>
