@@ -339,7 +339,7 @@ blockquote {
 
 /* ── Footer ───────────────────────────────────────────── */
 .site-footer {
-  background-color: var(--color-forest-dark);
+  background-color: #0d1a0b;
   color: var(--color-linen);
   padding-block: var(--space-16) var(--space-8);
 }
