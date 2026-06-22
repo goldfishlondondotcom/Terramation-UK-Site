@@ -5,6 +5,8 @@ featuredImage: "/images/2023/05/Keith-Blundy-32-1024x683.jpg"
 pubDate: 2023-05-10
 categories: ["Human Composting","UK News"]
 ---
+_Editorial note: this article was written in 2023. For the current legal position, see our [latest updates on the campaign](/blog/)._
+
 # The Church of England is considering legalising human composting
 
 ![a photo of the UK's general synod](/images/2023/05/Keith-Blundy-32-1024x683.jpg)

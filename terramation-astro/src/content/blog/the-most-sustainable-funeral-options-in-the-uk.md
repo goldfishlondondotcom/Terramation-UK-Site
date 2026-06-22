@@ -6,6 +6,8 @@ pubDate: 2023-03-31
 modDate: 2024-09-05
 categories: ["Human Composting"]
 ---
+_Editorial note: this article was written in 2023. For the current legal position, see our [latest updates on the campaign](/blog/)._
+
 # The Most Sustainable Funeral Options in the UK
 
 ### A Comprehensive Guide to Eco-Friendly Burials and Human Composting

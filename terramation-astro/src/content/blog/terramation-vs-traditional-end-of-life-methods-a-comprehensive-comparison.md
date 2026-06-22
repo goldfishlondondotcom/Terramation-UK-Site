@@ -6,6 +6,8 @@ pubDate: 2023-03-31
 modDate: 2023-05-10
 categories: ["Human Composting"]
 ---
+_Editorial note: this article was written in 2023. For the current legal position, see our [latest updates on the campaign](/blog/)._
+
 ## Terramation vs. Traditional End-of-Life Methods: A Comprehensive Comparison
 
 As conversations around sustainable funeral options gain momentum, terramation, also known as human composting or recomposition, has emerged as an eco-friendly alternative to traditional end-of-life methods. In this post, we will compare terramation with traditional burial and cremation, examining their environmental benefits, processes, and overall impact on the planet.

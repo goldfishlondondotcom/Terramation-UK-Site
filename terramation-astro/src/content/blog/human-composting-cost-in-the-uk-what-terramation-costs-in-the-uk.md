@@ -6,6 +6,8 @@ pubDate: 2023-04-18
 modDate: 2023-05-10
 categories: ["Human Composting"]
 ---
+_Editorial note: this article was written in 2023. For the current legal position, see our [latest updates on the campaign](/blog/)._
+
 # How much does terramation and human composting cost in the UK?
 
 As interest in eco-friendly funeral options grows, many individuals are curious about human composting, also known as terramation or recomposition, and its potential costs in the UK. While terramation is not yet legally available in the UK, we can look to other regions where this service is offered to estimate the possible costs and factors that may influence pricing. This blog will delve into the potential costs of human composting in the UK, considering its benefits and factors that could impact pricing once it becomes an available option.  

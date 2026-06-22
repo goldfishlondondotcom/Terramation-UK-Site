@@ -6,6 +6,8 @@ pubDate: 2023-07-30
 modDate: 2023-08-09
 categories: ["Human Composting"]
 ---
+_Editorial note: this article was written in 2023. For the current legal position, see our [latest updates on the campaign](/blog/)._
+
 # The Science Behind Human Composting: How Does It Work and Is It Safe?
 
 Composting. A term more commonly associated with apple cores and garden clippings than anything else. But hold your horses (and your spades), for we're about to dig into the fascinating and somewhat controversial topic of human composting. Now, don't turn up your nose just yet. It's not as grim as it sounds!
