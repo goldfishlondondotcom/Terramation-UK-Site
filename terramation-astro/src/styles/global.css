@@ -540,11 +540,23 @@ blockquote {
 
 .btn--outline {
   background-color: transparent;
+  color: var(--color-forest);
+  border-color: var(--color-forest);
+}
+
+.btn--outline:hover {
+  background-color: var(--color-forest);
+  border-color: var(--color-forest);
+  color: var(--color-white);
+}
+
+.btn--outline-dark {
+  background-color: transparent;
   color: var(--color-white);
   border-color: rgba(255,255,255,.5);
 }
 
-.btn--outline:hover {
+.btn--outline-dark:hover {
   background-color: rgba(255,255,255,.1);
   border-color: var(--color-white);
   color: var(--color-white);
