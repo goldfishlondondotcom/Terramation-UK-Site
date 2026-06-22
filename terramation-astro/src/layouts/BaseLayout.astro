@@ -9,6 +9,7 @@ interface Props {
   description?: string;
   ogImage?: string;
   noindex?: boolean;
+  showFooterSignup?: boolean;
 }
 
 const {
@@ -16,6 +17,7 @@ const {
   description = "Terramation UK — human composting and sustainable funeral education in the United Kingdom.",
   ogImage = "/images/2023/03/terramation_UK_home-of-composting-1024x810.png",
   noindex = false,
+  showFooterSignup = true,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
@@ -64,6 +66,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       <slot />
     </main>
 
-    <Footer />
+    <Footer showFooterSignup={showFooterSignup} />
   </body>
 </html>

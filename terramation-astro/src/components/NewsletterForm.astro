@@ -178,6 +178,7 @@ const formId = `newsletter-${Math.random().toString(36).slice(2, 8)}`;
 
         if (data.success) {
           form.reset();
+          window.sa_event?.("campaign_complete");
         }
       } catch {
         showStatus("Something went wrong. Please try again or email info@terramation.uk.", true);

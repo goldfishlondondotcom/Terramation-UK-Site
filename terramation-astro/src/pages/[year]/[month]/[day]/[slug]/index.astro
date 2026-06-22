@@ -68,6 +68,7 @@ function formatDate(date: Date) {
   title={`${post.data.title} | Terramation UK`}
   description={post.data.description}
   ogImage={ogImage}
+  showFooterSignup={false}
 >
   <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 

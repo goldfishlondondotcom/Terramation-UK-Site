@@ -1,9 +1,35 @@
 ---
+import NewsletterForm from "./NewsletterForm.astro";
+
+interface Props {
+  showFooterSignup?: boolean;
+}
+
+const { showFooterSignup = true } = Astro.props;
 const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer" role="contentinfo">
   <div class="container">
+
+    {showFooterSignup && (
+      <div class="site-footer__signup">
+        <div class="site-footer__signup-inner">
+          <div class="site-footer__signup-intro">
+            <h3 class="site-footer__signup-heading">Close the Circle</h3>
+            <p class="site-footer__signup-sub">Stay updated on the campaign to legalise human composting in the UK.</p>
+          </div>
+          <div class="site-footer__signup-form">
+            <NewsletterForm
+              variant="inline"
+              heading="Sign up for campaign updates"
+              dark={true}
+            />
+          </div>
+        </div>
+      </div>
+    )}
+
     <div class="site-footer__grid">
 
       <!-- Brand -->
@@ -41,7 +67,6 @@ const year = new Date().getFullYear();
       <div>
         <h4>Close the Circle</h4>
         <ul>
-          <li><a href="/contact/">Join the campaign</a></li>
           <li><a href="/blog/">Latest news</a></li>
           <li><a href="/privacy-policy/">Privacy policy</a></li>
           <li><a href="mailto:info@terramation.uk">info@terramation.uk</a></li>
@@ -67,3 +92,55 @@ const year = new Date().getFullYear();
     </div>
   </div>
 </footer>
+
+<style>
+  .site-footer__signup {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-block-end: var(--space-10);
+    margin-block-end: var(--space-10);
+  }
+
+  .site-footer__signup-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-10);
+  }
+
+  .site-footer__signup-intro {
+    flex: 0 0 auto;
+    max-width: 260px;
+  }
+
+  .site-footer__signup-heading {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-sage-light);
+    margin-block-end: var(--space-2);
+  }
+
+  .site-footer__signup-sub {
+    font-size: var(--text-sm);
+    color: rgba(237, 232, 222, 0.7);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .site-footer__signup-form {
+    flex: 1;
+    min-width: 0;
+  }
+
+  @media (max-width: 768px) {
+    .site-footer__signup-inner {
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+
+    .site-footer__signup-intro {
+      max-width: none;
+    }
+  }
+</style>
