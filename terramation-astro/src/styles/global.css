@@ -244,6 +244,13 @@ blockquote {
   color: var(--color-white) !important;
 }
 
+/* Tighten nav spacing on small laptops so all items fit before the mobile breakpoint */
+@media (min-width: 1024px) and (max-width: 1120px) {
+  .site-nav a {
+    padding-inline: var(--space-3);
+  }
+}
+
 /* Mobile nav toggle */
 .nav-toggle {
   display: none;
@@ -254,7 +261,7 @@ blockquote {
   color: var(--color-text);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
   .site-header__inner {
     gap: var(--space-3);
     align-items: flex-start;
@@ -296,8 +303,11 @@ blockquote {
     width: 100%;
   }
 
+  /* Collapse the wrapper so the toggle right-aligns at every width in this
+     range; .site-nav is absolutely positioned against .site-header__inner,
+     so the dropdown still spans the full container. */
   .site-header__nav {
-    width: 100%;
+    width: 0;
   }
 
   .site-header__logo {
@@ -1576,6 +1586,51 @@ blockquote {
   .provider-list__topline {
     align-items: flex-start;
   }
+}
+
+/* ── Investors ────────────────────────────────────────── */
+.investor-disclaimer {
+  max-width: var(--content-width);
+  margin-inline: auto;
+  margin-block-start: var(--space-6);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--color-text-light);
+  text-align: center;
+}
+
+.investor-banner {
+  background: linear-gradient(135deg, var(--color-forest) 0%, var(--color-forest-dark) 100%);
+  border-radius: var(--radius-lg);
+  padding: clamp(var(--space-10), 5vw, var(--space-16));
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+  color: var(--color-white);
+}
+
+.investor-banner__eyebrow {
+  display: block;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--color-sage-light);
+  margin-block-end: var(--space-3);
+}
+
+.investor-banner__content h2 {
+  color: var(--color-white);
+  margin-block-end: var(--space-3);
+}
+
+.investor-banner__content p {
+  color: rgba(255,255,255,.8);
+  font-size: var(--text-lg);
+  max-width: 480px;
+  margin: 0;
 }
 
 /* ── Page header ──────────────────────────────────────── */

@@ -4,6 +4,7 @@ description: "Ministers welcome terramation as an eco-friendly funeral option an
 featuredImage: "/images/2024/04/DALL·E-2024-04-02-15.53.04-Create-a-photorealistic-image-of-a-hand-gently-holding-rich-fertile-compost-with-the-warm-golden-light-of-the-evening-sun-casting-a-soft-glow-over-.webp"
 pubDate: 2025-06-11
 categories: ["Human Composting","UK News"]
+investorCta: true
 ---
 # UK Government Moves to Legalise Human Composting
 

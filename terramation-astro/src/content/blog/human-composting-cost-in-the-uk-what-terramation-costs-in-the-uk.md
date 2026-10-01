@@ -5,6 +5,7 @@ featuredImage: "/images/2023/04/02_Terramation-Vessel-01-3.png"
 pubDate: 2023-04-18
 modDate: 2023-05-10
 categories: ["Human Composting"]
+investorCta: true
 ---
 _Editorial note: this article was written in 2023. For the current legal position, see our [latest updates on the campaign](/blog/)._
 

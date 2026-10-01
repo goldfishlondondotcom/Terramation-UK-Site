@@ -4,6 +4,7 @@ description: "The Law Commission has backed a flexible framework that could let 
 featuredImage: "/images/2023/03/noah-buscher-x8ZStukS2PM-unsplash-1024x586.jpg"
 pubDate: 2026-06-09
 categories: ["UK News", "Human Composting"]
+investorCta: true
 ---
 
 This month the Law Commission published a report that could change how England and Wales treat new funeral methods, including human composting (terramation) and water cremation.

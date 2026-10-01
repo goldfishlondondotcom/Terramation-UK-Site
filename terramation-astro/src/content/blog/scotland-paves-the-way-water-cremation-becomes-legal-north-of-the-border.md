@@ -4,6 +4,7 @@ description: "In a landmark moment for the UK funeral industry, Scotland has bec
 featuredImage: "/images/2026/03/Screenshot-2026-03-05-at-16.46.15.png"
 pubDate: 2026-03-05
 categories: ["UK News"]
+investorCta: true
 ---
 ![](/images/2026/03/Screenshot-2026-03-05-at-16.46.15.png)
 

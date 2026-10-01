@@ -10,6 +10,8 @@ const blog = defineCollection({
     pubDate: z.coerce.date(),
     modDate: z.coerce.date().optional(),
     categories: z.array(z.string()).optional(),
+    registerCta: z.boolean().optional(),
+    investorCta: z.boolean().optional(),
   }),
 });
 
