@@ -82,6 +82,11 @@
   to     = "/contact/"
   status = 301
 
+[[redirects]]
+  from   = "/investors"
+  to     = "/investors/"
+  status = 301
+
 # ── Security & SEO headers ─────────────────────────────────────────────────
 [[headers]]
   for = "/*"
