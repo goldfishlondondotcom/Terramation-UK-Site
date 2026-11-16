@@ -1,0 +1,53 @@
+---
+---
+
+<div class="investor-cta">
+  <h3 class="investor-cta__heading">Following this as an investor?</h3>
+  <p class="investor-cta__body">
+    Human composting is not legal in England and Wales yet, but the market around it is forming.
+    See what Terramation UK has been building ahead of it.
+  </p>
+  <a
+    href="/investors/"
+    class="btn btn--earth investor-cta__btn"
+    data-investor-cta-btn
+  >
+    For investors
+  </a>
+</div>
+
+<script>
+  document.querySelectorAll("[data-investor-cta-btn]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      window.sa_event?.("investor_cta_click");
+    });
+  });
+</script>
+
+<style>
+  .investor-cta {
+    background: var(--color-linen, #f5f0e8);
+    border: 1px solid rgba(122, 92, 58, 0.2);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8) var(--space-10);
+    margin-block-end: var(--space-8);
+  }
+
+  .investor-cta__heading {
+    font-size: var(--text-xl);
+    color: var(--color-soil);
+    margin-block-end: var(--space-3);
+  }
+
+  .investor-cta__body {
+    font-size: var(--text-sm);
+    color: var(--color-text-mid);
+    line-height: 1.6;
+    max-width: 520px;
+    margin-block-end: var(--space-6);
+  }
+
+  .investor-cta__btn {
+    align-self: flex-start;
+  }
+</style>

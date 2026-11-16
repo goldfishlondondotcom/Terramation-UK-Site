@@ -1,0 +1,174 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const marketSignals = [
+  "Scotland became the first UK nation to legalise alkaline hydrolysis in March 2026",
+  "The UK Government welcomed the Law Commission's consultation on legalising terramation and water cremation in June 2025",
+  "Resomation providers are preparing to operate in the UK",
+  "The Church of England is considering its position on human composting",
+  "Terramation UK has campaigned on this since 2022",
+];
+
+const assets = [
+  {
+    title: "Audience and education",
+    description:
+      "The reference library people in the UK land on when they search for human composting, what it costs, and whether it is legal yet.",
+    includes: [
+      "Long-form explainers on the process, science, and costs",
+      "Ongoing coverage of UK legislation as it moves",
+      "Organic search visibility in a category with few credible voices",
+    ],
+  },
+  {
+    title: "Provider directory",
+    description:
+      "Find Sustainable Funerals is the discovery layer for natural burial, water cremation, and eco-focused funeral providers — and it already carries commercial inventory.",
+    includes: [
+      "High-intent visitors comparing sustainable funeral options",
+      "Featured listings, category sponsorship, and sponsored content",
+      "Direct relationships with providers across the sector",
+    ],
+  },
+  {
+    title: "Demand signal",
+    description:
+      "A register of interest from people who want human composting the moment it becomes available, held separately from the campaign mailing list.",
+    includes: [
+      "Names and regions gathered ahead of legalisation",
+      "An early read on where UK demand is concentrated",
+      "A campaign list of supporters following the legislation",
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="For Investors | Terramation UK"
+  description="Human composting is not yet legal in England and Wales. Terramation UK has been building the audience, education, and provider relationships for the category since 2022."
+>
+  <div class="page-header">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb__sep" aria-hidden="true">/</span>
+        <span aria-current="page">For Investors</span>
+      </nav>
+      <h1>Investing in what comes next</h1>
+      <p class="page-header__sub">
+        Human composting is not a legal end-of-life choice in England and Wales yet. Since 2022 we have been building
+        the audience, the education layer, and the provider relationships that will matter when it is.
+      </p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="advertise-hero">
+        <div class="advertise-hero__content">
+          <p class="advertise-hero__eyebrow">Why now</p>
+          <h2>A category that is about to exist</h2>
+          <p>
+            End-of-life provision in the UK has barely changed in a century. That is now moving: Scotland has opened a
+            new category, England and Wales are consulting, and the providers who will serve that market are already
+            positioning. Terramation UK has been campaigning and raising awareness here throughout.
+          </p>
+          <div class="advertise-hero__actions">
+            <a href="mailto:info@terramation.uk?subject=Investor%20enquiry" class="btn btn--primary">
+              Email us about investing
+            </a>
+            <a href="/find-sustainable-funerals/" class="btn btn--outline advertise-hero__secondary">
+              See what we have built
+            </a>
+          </div>
+        </div>
+        <div class="advertise-hero__card">
+          <p class="advertise-hero__card-label">Market signals</p>
+          <ul class="advertise-signal-list">
+            {marketSignals.map((signal) => (
+              <li>{signal}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tinted">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__eyebrow">Where we are today</span>
+        <h2 class="section__title">What we have built</h2>
+        <p class="section__subtitle">
+          Three assets, built ahead of the market rather than after it.
+        </p>
+      </div>
+
+      <div class="advertise-grid">
+        {assets.map((asset) => (
+          <article class="advertise-card">
+            <h3>{asset.title}</h3>
+            <p class="advertise-card__description">{asset.description}</p>
+            <ul class="advertise-card__list">
+              {asset.includes.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container container--narrow">
+      <span class="section__eyebrow">The thesis</span>
+      <h2 style="margin-block-end:var(--space-6);">Where this goes</h2>
+      <div class="prose">
+        <p>
+          Human composting in the UK is currently a question people research rather than a service they can buy. That
+          makes education the entry point, and education is what we have spent the last four years building. People
+          arrive with a question about the process, the cost, or the law, and they arrive early — often years before a
+          decision.
+        </p>
+        <p>
+          Those same people need to find providers. Find Sustainable Funerals is the discovery layer we built for the
+          adjacent options that <em>are</em> legal today — natural burial, water cremation, eco-focused funeral
+          services — and it is already commercially active through listings and sponsorship. It is the mechanism that
+          would carry human composting providers the day they exist.
+        </p>
+        <p>
+          Between the two sits the register of interest: people telling us, unprompted, that they want this when it is
+          available, and where in the UK they are. That is demand captured before the market opens.
+        </p>
+        <p>
+          Scotland has now legalised alkaline hydrolysis. If England and Wales follow the direction the Law Commission
+          consultation points in, a category appears with an established audience, a working directory, and a waiting
+          list already attached to it. We are early, deliberately, and we are talking to investors who understand why
+          that timing matters.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tinted">
+    <div class="container container--narrow">
+      <div class="directory-cta">
+        <h2>Who we would like to hear from</h2>
+        <p>
+          Angels and funds working in climate, deathtech, or consumer. Operators who have built regulated consumer
+          services from scratch. Strategic partners already inside the funeral sector. If the category interests you,
+          we would rather know you now than introduce ourselves later.
+        </p>
+        <a href="mailto:info@terramation.uk?subject=Investor%20enquiry" class="btn btn--primary">
+          Email us about investing
+        </a>
+      </div>
+      <p class="investor-disclaimer">
+        Terramation UK is not currently raising. Nothing on this page is an offer or invitation to invest, or a
+        financial promotion under section 21 of the Financial Services and Markets Act 2000. It is an introduction for
+        investors who want to follow the category as it develops.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

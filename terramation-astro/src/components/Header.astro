@@ -4,8 +4,9 @@ const currentPath = Astro.url.pathname;
 const nav = [
   { label: "Home",               href: "/" },
   { label: "What is Terramation?", href: "/2023/03/21/what-is-terramation/" },
-  { label: "Find Sustainable Funerals", href: "/find-sustainable-funerals/" },
+  { label: "Find Providers", href: "/find-sustainable-funerals/" },
   { label: "Advertise", href: "/advertise/" },
+  { label: "Investors", href: "/investors/" },
   { label: "Blog",               href: "/blog/" },
   { label: "Contact",            href: "/contact/" },
 ];
@@ -78,14 +79,14 @@ const nav = [
 
   navLinks.forEach((link) => {
     link.addEventListener("click", () => {
-      if (window.innerWidth <= 768) {
+      if (window.innerWidth <= 1023) {
         setOpen(false);
       }
     });
   });
 
   window.addEventListener("resize", () => {
-    if (window.innerWidth > 768) {
+    if (window.innerWidth > 1023) {
       setOpen(false);
     }
   });
